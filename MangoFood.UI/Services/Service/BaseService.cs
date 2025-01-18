@@ -10,20 +10,27 @@ namespace MangoFood.UI.Services.Service
 	public class BaseService : IBaseService
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ITokenProvider _tokenProvider;
 
-		public BaseService(IHttpClientFactory httpClientFactory)
+        public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
 		{
 			_httpClientFactory = httpClientFactory;
-		}
-		public async Task<ResponseDto?> SendAsync(RequestDto requestDto)
+            _tokenProvider = tokenProvider;
+        }
+		public async Task<ResponseDto?> SendAsync(RequestDto requestDto, bool withBearer = true)
 		{
 			try
 			{
 				HttpClient client = _httpClientFactory.CreateClient("MangoAPI");
 				HttpRequestMessage message = new();
 				message.Headers.Add("Accept", "application/json");
-				//token
-				message.RequestUri = new Uri(requestDto.Url);
+                //token
+                if (withBearer)
+                {
+                    var token = _tokenProvider.GetToken();
+                    message.Headers.Add("Authorization", $"Bearer {token}");
+                }
+                message.RequestUri = new Uri(requestDto.Url);
 
 				if (requestDto.Data != null)
 				{
@@ -49,24 +56,45 @@ namespace MangoFood.UI.Services.Service
 
 				apiResponse = await client.SendAsync(message);
 
-				switch (apiResponse.StatusCode)
-				{
-					case HttpStatusCode.NotFound:
-						return new() { Success = false, Message = "Not Found" };
-					case HttpStatusCode.Forbidden:
-						return new() { Success = false, Message = "Access Denied" };
-					case HttpStatusCode.Unauthorized:
-						return new() { Success = false, Message = "Unauthorized" };
-					case HttpStatusCode.BadRequest:
-						return new() { Success = false, Message = "Bad Request" };
-					case HttpStatusCode.InternalServerError:
-						return new() { Success = false, Message = "Internal Server Error" };
-					default:
-						var apiContent = await apiResponse.Content.ReadAsStringAsync();
-						var apiResponseDto = JsonConvert.DeserializeObject<ResponseDto>(apiContent);
-						return apiResponseDto;
-				}
-			}
+                switch (apiResponse.StatusCode)
+                {
+                    case HttpStatusCode.NotFound:
+                    case HttpStatusCode.Forbidden:
+                    case HttpStatusCode.Unauthorized:
+                    case HttpStatusCode.BadRequest:
+                    case HttpStatusCode.InternalServerError:
+                        var errorContent = await apiResponse.Content.ReadAsStringAsync();
+                        try
+                        {
+                            var errorResponseDto = JsonConvert.DeserializeObject<ResponseDto>(errorContent);
+                            if (errorResponseDto != null)
+                            {
+                                return errorResponseDto;
+                            }
+                        }
+                        catch
+                        {
+                            return new ResponseDto
+                            {
+                                Success = false,
+                                Message = apiResponse.StatusCode.ToString()
+                            };
+                        }
+                        break;
+
+                    default:
+                        var apiContent = await apiResponse.Content.ReadAsStringAsync();
+                        var apiResponseDto = JsonConvert.DeserializeObject<ResponseDto>(apiContent);
+                        return apiResponseDto;
+                }
+
+                // Nếu không khớp nhánh nào, trả về ResponseDto mặc định
+                return new ResponseDto
+                {
+                    Success = false,
+                    Message = "Unhandled status code."
+                };
+            }
 			catch (Exception ex)
 			{
 				var dto = new ResponseDto
