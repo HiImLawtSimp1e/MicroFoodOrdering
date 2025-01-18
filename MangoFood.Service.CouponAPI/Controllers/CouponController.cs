@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using Azure;
 using MangoFood.Service.CouponAPI.Data.Context;
 using MangoFood.Service.CouponAPI.Data.Entities;
 using MangoFood.Service.CouponAPI.Models.Common;
 using MangoFood.Service.CouponAPI.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace MangoFood.Service.CouponAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CouponController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -109,6 +109,7 @@ namespace MangoFood.Service.CouponAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<ServiceResponse<bool>>> CreateCoupon(CreateCouponDto item)
         {
             var res = new ServiceResponse<bool>();
@@ -136,6 +137,7 @@ namespace MangoFood.Service.CouponAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<ServiceResponse<bool>>> UpdateCoupon(Guid id, UpdateCouponDto updateCoupon)
         {
             var res = new ServiceResponse<bool>();
@@ -169,6 +171,7 @@ namespace MangoFood.Service.CouponAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "ADMIN")]
         public async Task<ActionResult<ServiceResponse<bool>>> DeleteCoupon(Guid id)
         {
             var res = new ServiceResponse<bool>();
