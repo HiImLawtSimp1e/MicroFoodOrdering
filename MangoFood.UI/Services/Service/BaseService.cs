@@ -7,14 +7,14 @@ using MangoFood.UI.Models.DTOs.Common;
 
 namespace MangoFood.UI.Services.Service
 {
-	public class BaseService : IBaseService
-	{
-		private readonly IHttpClientFactory _httpClientFactory;
+    public class BaseService : IBaseService
+    {
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly ITokenProvider _tokenProvider;
 
         public BaseService(IHttpClientFactory httpClientFactory, ITokenProvider tokenProvider)
-		{
-			_httpClientFactory = httpClientFactory;
+        {
+            _httpClientFactory = httpClientFactory;
             _tokenProvider = tokenProvider;
         }
         public async Task<ResponseDto> SendAsync(RequestDto requestDto, bool withBearer = true)
