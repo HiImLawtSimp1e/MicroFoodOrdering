@@ -1,4 +1,6 @@
-﻿namespace MangoFood.UI.Models.DTOs.ProductDTO
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MangoFood.UI.Models.DTOs.ProductDTO
 {
     public class ProductResponseDto
     {
@@ -8,5 +10,7 @@
         public string Description { get; set; }
         public string CategoryName { get; set; }
         public string ImageUrl { get; set; }
+        [Range(1, 100)]
+        public int Count { get; set; } = 1;
     }
 }
