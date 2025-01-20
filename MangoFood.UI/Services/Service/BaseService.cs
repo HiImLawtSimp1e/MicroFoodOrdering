@@ -58,14 +58,13 @@ namespace MangoFood.UI.Services.Service
 
                 switch (apiResponse.StatusCode)
                 {
-                    case HttpStatusCode.NotFound:
-                        return new() { Success = false, Message = "Not Found" };
                     case HttpStatusCode.Forbidden:
                         return new() { Success = false, Message = "Access Denied" };
                     case HttpStatusCode.Unauthorized:
                         return new() { Success = false, Message = "Unauthorized" };
                     case HttpStatusCode.InternalServerError:
                         return new() { Success = false, Message = "Internal Server Error" };
+                    case HttpStatusCode.NotFound:
                     case HttpStatusCode.BadRequest:
                         var errorContent = await apiResponse.Content.ReadAsStringAsync();
                         try
