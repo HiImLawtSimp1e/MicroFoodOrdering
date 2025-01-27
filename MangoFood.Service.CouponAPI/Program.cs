@@ -3,9 +3,7 @@ using AutoMapper;
 using MangoFood.Service.CouponAPI.Data.Context;
 using MangoFood.Service.CouponAPI.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
