@@ -39,10 +39,10 @@
 							@item.CouponCode
 						</td>
 						<td>
-							@((item.DiscountAmount).ToString("c"))
+							@(item.DiscountAmount).ToString("C", new CultureInfo("en-US"))
 						</td>
 						<td>
-							@((item.MinAmount).ToString("c"))
+							@(item.MinAmount).ToString("C", new CultureInfo("en-US"))
 						</td>
 						<td>
 							<a asp-action="Delete" asp-route-couponId="@item.Id" class="btn btn-danger">
