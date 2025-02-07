@@ -30,6 +30,19 @@ namespace MangoFood.Service.ShoppingCartAPI.Controllers
             return Ok(res);
         }
 
+        [HttpGet("GetOrder/{userId}")]
+        public async Task<ActionResult<ServiceResponse<OrderDto>>> GetOrder(string userId)
+        {
+            var res = await _cartService.GetOrder(userId);
+
+            if (!res.Success)
+            {
+                return BadRequest(res);
+            }
+
+            return Ok(res);
+        }
+
         [HttpPost("AddToCart/{userId}")]
         public async Task<ActionResult<ServiceResponse<bool>>> AddToCart(string userId, CartItemDto cartItem)
         {

@@ -52,6 +52,40 @@ namespace MangoFood.Service.ShoppingCartAPI.Services.CartService
             };
         }
 
+        public async Task<ServiceResponse<OrderDto>> GetOrder(string userId)
+        {
+            var dbCart = await GetCustomerCart(userId);
+
+            var order = _mapper.Map<OrderDto>(dbCart);
+
+            var products = await _productService.GetProducts();
+
+            foreach (var item in order.OrderItems)
+            {
+                var product = products.FirstOrDefault(u => u.Id == item.ProductId);
+
+                item.ProductName = product.Name;
+                item.Price = product.Price;
+
+                order.TotalAmount += item.Quantity * product.Price;
+            }
+
+            if (!string.IsNullOrEmpty(order.CouponCode))
+            {
+                var coupon = await _couponService.GetCoupon(order.CouponCode);
+                if (coupon != null && order.TotalAmount > coupon.MinAmount)
+                {
+                    order.TotalAmount -= coupon.DiscountAmount;
+                    order.Discount = coupon.DiscountAmount;
+                }
+            }
+
+            return new ServiceResponse<OrderDto>
+            {
+                Data = order
+            };
+        }
+
         public async Task<ServiceResponse<bool>> AddToCart(string userId, CartItemDto cartItem)
         {
             var res = new ServiceResponse<bool>();
