@@ -21,6 +21,14 @@ namespace MangoFood.UI.Services.Service
                 Url = SD.ShoppingCartAPIBase + "/Cart/GetCart/" + userId
             });
         }
+        public async Task<ResponseDto?> GetOrderByUserIdAsnyc(string userId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.ShoppingCartAPIBase + "/Cart/GetOrder/" + userId
+            });
+        }
         public async Task<ResponseDto?> AddToCartAsync(string userId, CartItemDto cartItem)
         {
             return await _baseService.SendAsync(new RequestDto()

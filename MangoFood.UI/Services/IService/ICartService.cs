@@ -6,6 +6,7 @@ namespace MangoFood.UI.Services.IService
     public interface ICartService
     {
         Task<ResponseDto?> GetCartByUserIdAsnyc(string userId);
+        Task<ResponseDto?> GetOrderByUserIdAsnyc(string userId);
         Task<ResponseDto?> AddToCartAsync(string userId, CartItemDto cartItem);
         Task<ResponseDto?> RemoveCartItemAsync(Guid cartItemId);
         Task<ResponseDto?> ApplyCouponAsync(string userId, string couponCode);
