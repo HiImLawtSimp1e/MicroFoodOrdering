@@ -23,5 +23,33 @@ namespace MangoFood.UI.Services.Service
                 Url = SD.OrderAPIBase + "/Order/CreateOrder"
             });
         }
+
+        public async Task<ResponseDto?> GetAllOrder()
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.OrderAPIBase + "/Order/GetOrders"
+            });
+        }
+
+        public async Task<ResponseDto?> GetOrder(Guid orderId)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.OrderAPIBase + "/Order/GetOrder/" + orderId
+            });
+        }
+
+        public async Task<ResponseDto?> UpdateOrderStatus(Guid orderId, string newStatus)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.PUT,
+                Data = newStatus,
+                Url = SD.OrderAPIBase + "/Order/UpdateOrderStatus/" + orderId
+            });
+        }
     }
 }
