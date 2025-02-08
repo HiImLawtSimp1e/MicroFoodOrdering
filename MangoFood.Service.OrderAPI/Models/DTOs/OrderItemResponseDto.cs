@@ -1,8 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace MangoFood.Service.OrderAPI.Data.Entities
+﻿namespace MangoFood.Service.OrderAPI.Models.DTOs
 {
-    public class OrderItem
+    public class OrderItemResponseDto
     {
         public Guid Id { get; set; }
         public Guid OrderId { get; set; }
@@ -10,7 +8,5 @@ namespace MangoFood.Service.OrderAPI.Data.Entities
         public string ProductName { get; set; } = string.Empty;
         public int Quantity { get; set; }
         public double Price { get; set; }
-        [JsonIgnore]
-        public Order? Order { get; set; }
     }
 }

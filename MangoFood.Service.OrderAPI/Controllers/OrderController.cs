@@ -30,5 +30,47 @@ namespace MangoFood.Service.OrderAPI.Controllers
 
             return Ok(res);
         }
+
+        [Authorize]
+        [HttpGet("GetOrders")]
+        public async Task<ActionResult<ServiceResponse<List<OrderResponseDto>>>> GetOrders()
+        {
+            var res = await _orderService.GetOrders();
+
+            if (!res.Success)
+            {
+                return BadRequest(res);
+            }
+
+            return Ok(res);
+        }
+
+        [Authorize]
+        [HttpGet("GetOrder/{orderId}")]
+        public async Task<ActionResult<ServiceResponse<OrderResponseDto>>> GetOrder(Guid orderId)
+        {
+            var res = await _orderService.GetOrder(orderId);
+
+            if (!res.Success)
+            {
+                return BadRequest(res);
+            }
+
+            return Ok(res);
+        }
+
+        [Authorize]
+        [HttpPut("UpdateOrderStatus/{orderId}")]
+        public async Task<ActionResult<ServiceResponse<bool>>> UpdateOrderStatus(Guid orderId, [FromBody] string newStatus)
+        {
+            var res = await _orderService.UpdateOrderStatus(orderId, newStatus);
+
+            if (!res.Success)
+            {
+                return BadRequest(res);
+            }
+
+            return Ok(res);
+        }
     }
 }

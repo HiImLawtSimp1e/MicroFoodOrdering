@@ -13,6 +13,10 @@ namespace MangoFood.Service.OrderAPI.Utilities
                 config.CreateMap<OrderDto, Order>();
 
                 config.CreateMap<OrderItemDto, OrderItem>();
+
+                config.CreateMap<Order, OrderResponseDto>();
+
+                config.CreateMap<OrderItem, OrderItemResponseDto>();
             });
 
             return mappingConfig;
