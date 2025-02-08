@@ -1,6 +1,6 @@
-﻿using Mango.Service.OrderAPI.Data.Entities;
+﻿using MangoFood.Service.OrderAPI.Data.Entities;
 
-namespace Mango.Service.OrderAPI.Data.Context
+namespace MangoFood.Service.OrderAPI.Data.Context
 {
     public class ApplicationDbContext : DbContext
     {

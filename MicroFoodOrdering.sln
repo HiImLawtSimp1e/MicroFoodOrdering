@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangoFood.Service.ProductAP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangoFood.Service.ShoppingCartAPI", "MangoFood.Service.ShoppingCartAPI\MangoFood.Service.ShoppingCartAPI.csproj", "{196F24B3-029E-46E6-AC5F-14979FCDE6D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mango.Service.OrderAPI", "Mango.Service.OrderAPI\Mango.Service.OrderAPI.csproj", "{063C49C0-5BDA-4A35-96BB-6481D42E57A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MangoFood.Service.OrderAPI", "MangoFood.Service.OrderAPI\MangoFood.Service.OrderAPI.csproj", "{063C49C0-5BDA-4A35-96BB-6481D42E57A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

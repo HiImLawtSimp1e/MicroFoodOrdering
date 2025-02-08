@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Mango.Service.OrderAPI.Migrations
+namespace MangoFood.Service.OrderAPI.Migrations
 {
     /// <inheritdoc />
     public partial class createOrder : Migration

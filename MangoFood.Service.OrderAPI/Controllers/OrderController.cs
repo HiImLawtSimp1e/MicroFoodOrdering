@@ -1,16 +1,10 @@
-﻿using AutoMapper;
-using Azure;
-using Mango.Service.OrderAPI.Data.Context;
-using Mango.Service.OrderAPI.Data.Entities;
-using Mango.Service.OrderAPI.Models.DTOs;
-using Mango.Service.OrderAPI.Services.OrderService;
-using Mango.Service.OrderAPI.Utilities;
+﻿using MangoFood.Service.OrderAPI.Models.DTOs;
+using MangoFood.Service.OrderAPI.Services.OrderService;
 using MangoFood.Service.OrderAPI.Models.Common;
-using MangoFood.Service.OrderAPI.Services.ProductService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Mango.Service.OrderAPI.Controllers
+namespace MangoFood.Service.OrderAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

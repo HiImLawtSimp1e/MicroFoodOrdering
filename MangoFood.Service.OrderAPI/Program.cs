@@ -1,7 +1,7 @@
 global using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using Mango.Service.OrderAPI.Data.Context;
-using Mango.Service.OrderAPI.Services.OrderService;
+using MangoFood.Service.OrderAPI.Data.Context;
+using MangoFood.Service.OrderAPI.Services.OrderService;
 using MangoFood.Service.OrderAPI.Services.ProductService;
 using MangoFood.Service.OrderAPI.Utilities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

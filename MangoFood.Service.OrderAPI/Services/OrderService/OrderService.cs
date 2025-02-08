@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Mango.Service.OrderAPI.Data.Context;
-using Mango.Service.OrderAPI.Data.Entities;
-using Mango.Service.OrderAPI.Models.DTOs;
-using Mango.Service.OrderAPI.Utilities;
+using MangoFood.Service.OrderAPI.Data.Context;
+using MangoFood.Service.OrderAPI.Data.Entities;
+using MangoFood.Service.OrderAPI.Models.DTOs;
+using MangoFood.Service.OrderAPI.Utilities;
 using MangoFood.Service.OrderAPI.Models.Common;
 using MangoFood.Service.OrderAPI.Services.ProductService;
 
-namespace Mango.Service.OrderAPI.Services.OrderService
+namespace MangoFood.Service.OrderAPI.Services.OrderService
 {
     public class OrderService : IOrderService
     {

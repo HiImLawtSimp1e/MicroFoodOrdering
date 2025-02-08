@@ -1,7 +1,7 @@
-﻿using Mango.Service.OrderAPI.Models.DTOs;
+﻿using MangoFood.Service.OrderAPI.Models.DTOs;
 using MangoFood.Service.OrderAPI.Models.Common;
 
-namespace Mango.Service.OrderAPI.Services.OrderService
+namespace MangoFood.Service.OrderAPI.Services.OrderService
 {
     public interface IOrderService
     {

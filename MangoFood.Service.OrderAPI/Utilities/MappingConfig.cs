@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Mango.Service.OrderAPI.Data.Entities;
-using Mango.Service.OrderAPI.Models.DTOs;
+using MangoFood.Service.OrderAPI.Data.Entities;
+using MangoFood.Service.OrderAPI.Models.DTOs;
 
 namespace MangoFood.Service.OrderAPI.Utilities
 {
